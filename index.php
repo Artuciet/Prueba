@@ -314,30 +314,20 @@
                     <img src="img/logo-white.png" alt="Universidad Logo White" class="scrolled-logo d-none">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto color-primary">
                       <li class="nav-item">
-                        <a class="nav-link" href="#hero">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#hero">About Us</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#the-most-popular">Lo Más Popular</a>
+                        <a class="nav-link" href="#the-most-popular">Courses</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#about-us">Sobre Nosotros</a>
+                        <a class="nav-link" href="#about-us">Team</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#benefits">Beneficios</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#study-careers">Carreras</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#team">Equipo</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#reviews">Testimonios</a>
+                        <a class="nav-link" href="#benefits">Contact Us</a>
                       </li>
                     </ul>
                 </div>
@@ -347,32 +337,38 @@
 
     <section id="hero" class="hero-section">
         <video autoplay muted loop id="heroVideo">
-            <source src="video/background-video.mp4" type="video/mp4">
-            Tu navegador no soporta el tag de video.
+            <source src="TEST-SPANISH/TEST-SPANISH/Videos/hero-video.mp4" type="video/mp4">
         </video>
-        <div class="container d-flex align-items-center justify-content-center h-100">
+        <div class="container d-flex align-items-center justify-content-start h-100">
             <div class="row w-100">
                 <div class="col-lg-6 text-white text-center-mobile">
-                    <h1 class="display-4">Bienvenido a Universalad University</h1>
-                    <p class="lead mt-3">Somos una plataforma online para hacer el aprendizaje accesible para todos.</p>
-                    <button class="btn btn-warning btn-lg mt-4">Comenzar a Aprender Ahora</button>
+                    <h1 class="display-4">Welcome to the University</h1>
+                    <p class="lead mt-3">We are an online platform to make learning.</p>
+                    <button class="btn btn-warning btn-lg mt-4">Get Now</button>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-center mt-5 mt-lg-0">
                     <div class="card p-4 shadow-lg form-card" style="max-width: 400px; width: 100%;">
                         <h5 class="card-title text-center text-primary mb-4">Regístrate Hoy</h5>
                         <form>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nombre Completo">
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-6">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="Phone">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Correo Electrónico">
+                                <input type="password" class="form-control" placeholder="Subject">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Contraseña">
+                                <textarea class="form-control" rows="3" placeholder="Message"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-4">Registrarse</button>
-                            <small class="form-text text-center mt-3">¿Ya tienes una cuenta? <a href="#" class="text-primary">Inicia Sesión</a></small>
-                        </form>
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Send</button>
+                         </form>
                     </div>
                 </div>
             </div>
