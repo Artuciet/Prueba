@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40jBqzyPmk8gopz/7SqC7NIcjfBLQof7UjzeV1fP3s7D+cxtn/gB/L0t2v/x7F6dI+c2E/7+b+w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
-        /* Estilos personalizados para El documento
+        /* Estilos personalizados para El documento */
 
         /* Header y Top Header */
         .top-header {
@@ -24,43 +24,56 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .transparent-header .navbar-brand .scrolled-logo {
+        .transparent-header.navbar-brand.scrolled-logo {
             display: none;
         }
 
-        .transparent-header .navbar-brand .initial-logo {
+        .transparent-header.navbar-brand.initial-logo {
             display: block;
         }
 
         /* Header al hacer scroll */
         .scrolled-header {
-            background-color: #0d3967ff; /* Fondo azul para el top header */
-            !important; /* Fondo azul al hacer scroll */
+            background-color: #0d3967ff!important; /* Fondo azul al hacer scroll */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .scrolled-header .navbar .nav-link {
-            color: white !important; /* Opciones de menú en blanco */
+        /* Navbar enlaces blancos sobre fondo transparente */
+        .transparent-header .navbar-nav .nav-link {
+            color: #fff !important;
+            transition: color 0.3s;
         }
-
-        .scrolled-header .navbar-brand .initial-logo {
+        /* Logo inicial visible, logo scrolled oculto */
+        .transparent-header .navbar-brand .initial-logo {
+            display: block !important;
+        }
+        .transparent-header .navbar-brand .scrolled-logo {
             display: none !important;
         }
 
+        /* Al hacer scroll: fondo azul, letras blancas */
+        .scrolled-header {
+            background-color: #0d3967ff!important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .scrolled-header .navbar-nav .nav-link {
+            color: #fff !important;
+        }
+        .scrolled-header .navbar-brand .initial-logo {
+            display: none !important;
+        }
         .scrolled-header .navbar-brand .scrolled-logo {
             display: block !important;
         }
 
-        /* Efecto hover en las opciones del menú */
-        .navbar .nav-item .nav-link {
-            transition: color 0.3s ease;
-            color: rgba(0, 0, 0, 0.7); /* Color inicial de los enlaces */
+        /* Hover celeste SIEMPRE para los enlaces del navbar */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: #00bfff !important;
         }
 
-        .navbar .nav-item .nav-link:hover {
-            color: #ffc107 !important; /* Ejemplo: un amarillo para el hover, similar al botón */
-        }
-
+        /* Elimina reglas de hover amarillo para evitar conflicto */
+        /* ...otros estilos... */
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -87,14 +100,28 @@
             background-position: center;
         }
 
-        .hero-section .container {
+        .hero-section.container {
             z-index: 1;
         }
 
-        /* Aumento del borde redondeado para las tarjetas */
+        /* Borde redondeado para las tarjetas (general) */
         .card,
         .form-card {
             border-radius: 20px; /* Ajusta este valor para más o menos redondeado */
+        }
+        /* Bordes superiores redondeados para la imagen de la card */
+        .card-img-top {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        /* Opcional: Si tienes un .card-header, también puedes redondear arriba */
+        .card-header {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        /* Ajustar padding del card-body para acercar el texto a la imagen */
+        .card .card-body {
+            padding-top: 1rem;
         }
 
         /* Efecto hover para botones */
@@ -123,18 +150,18 @@
 
         /* Sección About Us - Orden del contenido en móvil */
         @media (max-width: 991.98px) {
-            #about-us .col-lg-6.order-lg-1.order-2 {
-                order: 2 !important; /* Texto después de la imagen en móvil */
+            #about-us.col-lg-6.order-lg-1.order-2 {
+                order: 2!important; /* Texto después de la imagen en móvil */
             }
-            #about-us .col-lg-6.order-lg-2.order-1 {
-                order: 1 !important; /* Imagen primero en móvil */
+            #about-us.col-lg-6.order-lg-2.order-1 {
+                order: 1!important; /* Imagen primero en móvil */
                 margin-bottom: 1.5rem; /* Espacio entre imagen y texto */
             }
         }
 
         /* Beneficios - Círculos organizados en grupos de dos por fila en vista móvil */
         @media (max-width: 767.98px) {
-            #benefits .col-6 {
+            #benefits.col-6 {
                 flex: 0 0 50%;
                 max-width: 50%;
             }
@@ -145,13 +172,13 @@
                 justify-content: center;
                 margin-bottom: 1rem; /* Espaciado entre filas */
             }
-            .benefit-circle img, .benefit-circle i {
+            .benefit-circle img,.benefit-circle i {
                 margin-bottom: 0.5rem; /* Espacio entre el icono/imagen y el texto */
             }
 
             /* Textos y elementos centrados en vista móvil */
             .text-center-mobile {
-                text-align: center !important;
+                text-align: center!important;
             }
         }
 
@@ -167,63 +194,269 @@
 
         /* Study Careers - Todas las tarjetas con el mismo tamaño en vista móvil */
         @media (max-width: 767.98px) {
-            #study-careers .career-card {
-                height: auto !important;
+            #study-careers.career-card {
+                height: auto!important;
                 min-height: unset;
             }
-            #study-careers .col-md-4 {
+            #study-careers.col-md-4 {
                 margin-bottom: 1rem;
             }
         }
 
-        /* Team Section - Posicionamiento de la imagen circular "entre centro y top" */
-        .team-member-card .card .img-background-container {
-            position: relative;
-            height: 180px;
-            overflow: hidden;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+        .career-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
         }
 
-        .team-member-card .card .img-background-container img.card-img-top {
+        .career-card {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          border-radius: 12px;
+          height: 180px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 20px;
+          color: #fff;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          transition: transform 0.3s;
+        }
+
+        .career-card:hover {
+          transform: scale(1.03);
+        }
+
+        .career-card h4 {
+          margin: 0 0 10px 0;
+          font-size: 18px;
+          font-weight: bold;
+          text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        .career-card button {
+          align-self: flex-start;
+          background-color: #f4a261;
+          color: #fff;
+          border: none;
+          padding: 8px 20px;
+          border-radius: 20px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .career-card button:hover {
+          background-color: #e76f51;
+        }
+
+        .view-more {
+          background: none;
+          border: 2px solid #f4a261;
+          color: #f4a261;
+          padding: 10px 25px;
+          border-radius: 25px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .view-more:hover {
+          background-color: #f4a261;
+          color: #fff;
+        }
+
+
+        /* Estilos generales de la tarjeta del equipo */
+        .tarjeta-equipo {
+            background-color: #ffffffff; /* Fondo gris claro para coincidir con el diseño */
+            border: none; /* Eliminar el borde predeterminado de la tarjeta */
+            transition: transform 0.2s ease-in-out; /* Animación al pasar el ratón */
+            border-radius: 15px; /* Ajustar a 15px para el mockup de la tarjeta de equipo */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Sombra sutil como en el mockup */
+            overflow: hidden; /* Asegura que los bordes redondeados y el contenido se recorten */
+            position: relative; /* Necesario para el posicionamiento absoluto de la imagen de perfil */
+            padding-bottom: 20px; /* Añadir algo de relleno en la parte inferior para el botón */
+            display: flex;
+            flex-direction: column; /* Organiza el contenido de la tarjeta en columna */
+        }
+
+        .tarjeta-equipo:hover {
+            transform: translateY(-5px); /* Efecto de "levantamiento" */
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al hover */
+        }
+
+        .altura-100 {
+            height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+        }
+
+        /* Contenedor para el fondo y la imagen de perfil */
+        .contenedor-fondo-perfil {
+            position: relative; /* Base para posicionar elementos internos */
+            height: 120px; /* Altura fija para el área de la imagen de fondo, como en el mockup */
+            overflow: hidden; /* Recorta el contenido que se salga */
+            border-top-left-radius: 15px; /* Coincidir con el radio de la tarjeta */
+            border-top-right-radius: 15px; /* Coincidir con el radio de la tarjeta */
+            margin-bottom: -60px; /* Mover la imagen de perfil hacia arriba para superponerse */
+            /* CORRECCIÓN: Aumentar el z-index para asegurar que el contenido de este contenedor (incluyendo la imagen de perfil) esté sobre el texto */
+            z-index: 10;
+        }
+
+        /* Imagen de fondo dentro del contenedor */
+        .fondo-img-tarjeta {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background-size: cover; /* Cubre el área sin distorsionar */
+            background-position: center top; /* Enfoca la parte superior de la imagen para evitar recortes */
+            background-repeat: no-repeat;
+            z-index: 1; /* Detrás de la imagen de perfil */
+            /* Opcional: Añadir una superposición sutil para la desaturación si es necesario */
+            /* filter: grayscale(50%) brightness(1.1); */
         }
 
-        .team-member-card .card .profile-img-specific {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 35%;
-            width: 150px;
-            height: 150px;
-            border: 10px solid white;
-            object-fit: cover;
-            z-index: 2;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* Imagen de perfil redonda y centrada */
+        .img-perfil-central {
+            width: 120px; /* Tamaño de la imagen de perfil, como en el mockup */
+            height: 120px; /* Tamaño de la imagen de perfil, como en el mockup */
+            object-fit: cover; /* Recorta la imagen para llenar el círculo */
+            border: 10px solid white; /* Borde blanco alrededor de la imagen */
+            border-radius: 50%; /* Hace la imagen circular */
+            /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para la imagen */
+            position: absolute; /* Para posicionamiento absoluto */
+            left: 50%; /* Centrar horizontalmente */
+            top: 25%; /* Inicia desde la parte superior de su contenedor relativo */
+            transform: translate(-50%, -50%); /* Ajusta para centrar perfectamente (horizontal y verticalmente a la mitad del elemento) */
+            margin-top: 15px; /* Ajuste fino para "casi al centro pero no en el centro" y superposición */
+            z-index: 99; /* Encima del fondo */
+            /* Anular las clases d-block y mx-auto de Bootstrap si entran en conflicto con el posicionamiento absoluto */
+            display: block!important;
+            margin-left: auto!important;
+            margin-right: auto!important;
         }
 
-        /* Estilos para las otras imágenes de equipo que no tienen fondo */
-        .team-member-card .card .profile-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border: 5px solid white;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        /* Ajustes para el cuerpo de la tarjeta (donde va el texto) */
+        .card-body {
+            padding-top: 90px; /* Ajusta el padding superior para tener en cuenta la imagen de perfil superpuesta */
+            text-align: center; /* Centra el texto */
+            flex-grow: 2;
+            display: flex; /* Para centrar contenido internamente */
+            flex-direction: column;
+            justify-content: flex-start; /* Alinea el contenido hacia arriba */
+            align-items: center;
         }
 
-        /* Team Carousel para vista móvil: 1 ítem */
+        .card-title.fuente-negrita {
+            font-size: 1.3rem; /* Ajustar el tamaño de la fuente para que coincida con el nombre de Jimena Soto */
+            color: #333; /* Color más oscuro para el nombre */
+            font-weight: 700; /* Asegurar que esté en negrita */
+            margin-bottom: 5px!important; /* Pequeño margen entre el nombre y la materia */
+        }
+
+        .card-text.texto-sutil {
+            font-size: 0.95rem; /* Tamaño de fuente más pequeño para la materia */
+            color: #F8B400; /* Color naranja para la materia, como en el mockup */
+            font-weight: 400; /* Peso más ligero */
+        }
+
+        /* Estilos para el enlace "Más sobre él" (botón de contorno naranja) */
+        .btn-enlace-mas {
+            display: inline-block;
+            padding: 8px 25px; /* Ajustar el relleno para el tamaño del botón */
+            border: 2px solid #F8B400; /* Borde naranja */
+            color: #F8B400; /* Texto naranja */
+            background-color: transparent; /* Fondo transparente */
+            border-radius: 50px; /* Forma de píldora */
+            text-decoration: none; /* Eliminar el subrayado */
+            font-weight: 600; /* Texto semi-negrita */
+            transition: all 0.3s ease; /* Transición suave para el efecto hover */
+            margin-top: 10px; /* Espacio superior para el botón */
+        }
+
+        .btn-enlace-mas:hover {
+            background-color: #F8B400; /* Naranja sólido al pasar el ratón */
+            color: white; /* Texto blanco al pasar el ratón */
+            text-decoration: none; /* Asegurar que no haya subrayado al pasar el ratón */
+        }
+
+        /* Botón General de la Sección "Ver Más" (.btn-naranja) */
+        .btn-naranja {
+            background-color: #F8B400; /* Naranja sólido */
+            color: white;
+            border: 2px solid #F8B400; /* Asegurar el borde para la consistencia */
+            border-radius: 50px; /* Forma de píldora */
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .btn-naranja:hover {
+            background-color: #e0a300; /* Naranja ligeramente más oscuro al pasar el ratón */
+            border-color: #e0a300;
+        }
+
+        /* Estilo de Carrusel Responsivo para 4 Elementos en PC / 1 Elemento en Móvil */
+        .carousel-inner.carousel-item { /* Target carousel-item directly */
+            display: flex;
+            flex-wrap: nowrap; /* Prevent wrapping on desktop */
+            justify-content: center; /* Center items if less than 4 */
+            transition: transform 0.6s ease-in-out; /* Smooth transition for slides */
+            -webkit-backface-visibility: hidden; /* Fix for flickering in some browsers */
+            backface-visibility: hidden;
+        }
+
+        /* For small devices (sm) - 1 item per row */
         @media (max-width: 767.98px) {
-            #teamCarousel .carousel-inner .carousel-item .col-md-3:not(:first-child) {
-                display: none !important;
-            }
-            #teamCarousel .carousel-inner .carousel-item .col-md-3 {
-                flex: 0 0 100%;
+            .carousel-inner.carousel-item >.row >.col-sm-6 { /* Target the col-sm-6 inside the row within carousel-item */
+                flex: 0 0 100%; /* Make each card take full width */
                 max-width: 100%;
             }
+            .carousel-inner.carousel-item {
+                flex-wrap: wrap; /* Allow wrapping on mobile to stack cards */
+            }
         }
+
+        /* For medium devices (md) - 3 items per row (if applicable, based on Bootstrap grid) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .carousel-inner.carousel-item >.row >.col-md-4 { /* Target the col-md-4 inside the row within carousel-item */
+                flex: 0 0 33.33333%; /* Each card takes 33.33% width for 3 items */
+                max-width: 33.33333%;
+            }
+        }
+
+        /* For large devices (lg) - 4 items per row */
+        @media (min-width: 992px) {
+            .carousel-inner.carousel-item >.row >.col-lg-3 { /* Target the col-lg-3 inside the row within carousel-item */
+                flex: 0 0 25%; /* Each card takes 25% width for 4 items */
+                max-width: 25%;
+            }
+        }
+
+        /* Ajustar la posición y estilo de los controles del carrusel */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%; /* Hacer los controles más pequeños */
+            opacity: 0.8; /* Ligeramente transparentes */
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-image: none; /* Eliminar el icono predeterminado */
+            width: 30px; /* Tamaño de icono personalizado */
+            height: 30px;
+            background-size: 100%, 100%;
+            background-repeat: no-repeat;
+            filter: invert(100%); /* Hacerlos blancos */
+        }
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
+
+        /* --- FIN DE ESTILOS CORREGIDOS PARA LA SECCIÓN DE EQUIPO --- */
+
 
         /* Reviews - Contenedor de video y miniatura */
         .video-container {
@@ -252,7 +485,7 @@
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        .video-thumbnail:hover .fa-play-circle {
+        .video-thumbnail:hover.fa-play-circle {
             color: rgba(255, 255, 255, 1);
             transform: scale(1.1);
         }
@@ -267,28 +500,64 @@
         }
 
         /* Footer */
-        footer .list-unstyled a,
-        footer .social-links a,
-        footer .text-white-50 {
-            color: rgba(255, 255, 255, 0.7) !important;
+        footer.list-unstyled a,
+        footer.social-links a,
+        footer.text-white-50 {
+            color: rgba(255, 255, 255, 0.7)!important;
             transition: color 0.2s ease;
         }
 
-        footer .list-unstyled a:hover,
-        footer .social-links a:hover,
-        footer .text-white-50:hover {
-            color: white !important;
+        footer.list-unstyled a:hover,
+        footer.social-links a:hover,
+        footer.text-white-50:hover {
+            color: white!important;
         }
 
         /* Alineación de texto en móvil para el footer */
         @media (max-width: 767.98px) {
-            footer .col-md-3 {
-                text-align: center !important;
+            footer.col-md-3 {
+                text-align: center!important;
             }
-            footer .list-unstyled {
+            footer.list-unstyled {
                 padding-left: 0;
             }
         }
+
+        /* Navbar enlaces blancos sobre fondo transparente */
+        .transparent-header .navbar-nav .nav-link {
+            color: #fff !important;
+            transition: color 0.3s;
+        }
+        /* Logo inicial visible, logo scrolled oculto */
+        .transparent-header .navbar-brand .initial-logo {
+            display: block !important;
+        }
+        .transparent-header .navbar-brand .scrolled-logo {
+            display: none !important;
+        }
+
+        /* Al hacer scroll: fondo azul, letras blancas */
+        .scrolled-header {
+            background-color: #0d3967ff!important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .scrolled-header .navbar-nav .nav-link {
+            color: #fff !important;
+        }
+        .scrolled-header .navbar-brand .initial-logo {
+            display: none !important;
+        }
+        .scrolled-header .navbar-brand .scrolled-logo {
+            display: block !important;
+        }
+
+        /* Hover celeste SIEMPRE para los enlaces del navbar */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: #00bfff !important;
+        }
+
+        /* Elimina reglas de hover amarillo para evitar conflicto */
     </style>
 </head>
 <body>
@@ -297,13 +566,23 @@
         <div class="top-header">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="contact-info">
-                    <span><i class="fas fa-phone mr-1"></i> +1 (234) 567-890</span>
-                    <span class="ml-3"><i class="fas fa-envelope mr-1"></i> info@universalad.com</span>
+                    <a href="tel:+1234567890" class="text-white ml-3" style="text-decoration:none;">
+                        <i class="fas fa-phone mr-1"></i> +123 456 789
+                    </a>
+                    <a href="mailto:info@email.com" class="text-white ml-3" style="text-decoration:none;">
+                        <i class="fas fa-envelope mr-1"></i> info@email.com
+                    </a>
                 </div>
-                <div class="social-links">
-                    <a href="https://facebook.com" target="_blank" class="mr-2"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="mr-2"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <div class="social-links d-flex align-items-center" style="gap: 12px;">
+                    <a href="#" target="_blank">
+                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/yt_logo.png" alt="Icono 1" style="width:28px; height:28px;">
+                    </a>
+                    <a href="#" target="_blank">
+                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ig_logo.png" alt="Icono 2" style="width:28px; height:28px;">
+                    </a>
+                    <a href="#" target="_blank">
+                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/fb_logo.png" alt="Icono 3" style="width:28px; height:28px;">
+                    </a>
                 </div>
             </div>
         </div>
@@ -311,23 +590,26 @@
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="TEST-SPANISH/TEST-SPANISH/Imagenes/LOGO.png" alt="Universidad logo" class="initial-logo d-block mx-auto" style="max-width: 80px; height: auto;">
-                    <img src="img/logo-white.png" alt="Universidad Logo White" class="scrolled-logo d-none">
+                    <img src="TEST-SPANISH/TEST-SPANISH/Imagenes/LOGO.png" alt="Universidad Logo White" class="scrolled-logo d-none" style="max-width: 80px; height: auto;">
                 </a>
+                <!-- Corrige el botón hamburguesa -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto color-primary">
                       <li class="nav-item">
-                        <a class="nav-link" href="#hero">About Us</a>
+                        <!-- Corrige el enlace About Us -->
+                        <a class="nav-link" href="#about-us">About Us</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#the-most-popular">Courses</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#about-us">Team</a>
+                        <a class="nav-link" href="#team">Team</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#benefits">Contact Us</a>
+                        <a class="nav-link" href="#contact-us">Contact Us</a>
                       </li>
                     </ul>
                 </div>
@@ -339,16 +621,18 @@
         <video autoplay muted loop id="heroVideo">
             <source src="TEST-SPANISH/TEST-SPANISH/Videos/hero-video.mp4" type="video/mp4">
         </video>
-        <div class="container d-flex align-items-center justify-content-start h-100">
+        <div class="container d-flex align-items-center justify-content-right h-100" style="margin-top: 90px;">
             <div class="row w-100">
-                <div class="col-lg-6 text-white text-center-mobile">
-                    <h1 class="display-4">Welcome to the University</h1>
-                    <p class="lead mt-3">We are an online platform to make learning.</p>
-                    <button class="btn btn-warning btn-lg mt-4">Get Now</button>
+                <div class="col-lg-6 text-white text-center-mobile" style="margin-top: 120px;">
+                    <h5 style="text-align: start;">Welcome a the University</h5>
+                    <h1 style="text-align: start;">We are an online<br>platform to make learning.</h1>
+                    <button class="d-flex justify-content-start btn btn-warning btn-lg mt-4">Get Now</button>
                 </div>
-                <div class="col-lg-6 d-flex justify-content-center mt-5 mt-lg-0">
-                    <div class="card p-4 shadow-lg form-card" style="max-width: 400px; width: 100%;">
-                        <h5 class="card-title text-center text-primary mb-4">Regístrate Hoy</h5>
+                <div class="col-lg-6 d-flex justify-content-center mt-5 mt-lg-3">
+                    <div class="card p-4 shadow-lg form-card" style="max-width: 400px; width: 100%; margin-top:40px;">
+                        <div class="mb-4">
+                            <h5 class="card-title text-white py-3 px-3 rounded" style="background: #007bff; width: 100%; min-width: 100%; text-align:center;">Register Now !</h5>
+                        </div>
                         <form>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Name">
@@ -367,8 +651,10 @@
                             <div class="form-group">
                                 <textarea class="form-control" rows="3" placeholder="Message"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-4">Send</button>
-                         </form>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-warning mt-4 px-4">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -377,15 +663,18 @@
 
     <section id="the-most-popular" class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5 font-weight-bold">Lo Más Popular</h2>
+            <h4 class="texto-naranja mb-1 texto-mayusculas fuente-negrita" style="font-size: 1.5rem; color: #000000ff;">
+                <span style="color: #F8B400; font-size: 1.5em; vertical-align: middle;">&bull;</span> The Most Popular
+            </h4>
+            <h1 class="font-weight-bold mb-4" style="font-size: 2.2rem;">know what we offer you</h1>
             <div class="row">
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card course-card h-100 shadow-sm">
                         <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE CURSO 1.jpg" class="card-img-top" alt="Diseño Web">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Diseño Web Avanzado</h5>
-                            <p class="card-text text-muted flex-grow-1">Aprende a crear sitios web interactivos y modernos con las últimas tecnologías.</p>
-                            <a href="#" class="btn btn-warning mt-auto">Ver Curso</a>
+                            <h5 class="card-title font-weight-bold">Web Design</h5>
+                            <p class="card-text text-muted flex-grow-1">Design for the web with Adobe Photoshop.</p>
+                            <a href="#" class="btn btn-warning mt-auto">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -393,9 +682,9 @@
                     <div class="card course-card h-100 shadow-sm">
                         <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE CURSO 2.jpg" class="card-img-top" alt="Marketing Digital">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Estrategias de Marketing Digital</h5>
-                            <p class="card-text text-muted flex-grow-1">Domina SEO, SEM, redes sociales y email marketing para impulsar tu negocio.</p>
-                            <a href="#" class="btn btn-warning mt-auto">Ver Curso</a>
+                            <h5 class="card-title font-weight-bold">Web Design</h5>
+                            <p class="card-text text-muted flex-grow-1">Design for the web with Adobe Photoshop.</p>
+                            <a href="#" class="btn btn-warning mt-auto">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -403,9 +692,9 @@
                     <div class="card course-card h-100 shadow-sm">
                         <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE CURSO 3.jpg" class="card-img-top" alt="Ciencia de Datos">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Introducción a la Ciencia de Datos</h5>
-                            <p class="card-text text-muted flex-grow-1">Explora los fundamentos del análisis de datos, machine learning y visualización.</p>
-                            <a href="#" class="btn btn-warning mt-auto">Ver Curso</a>
+                            <h5 class="card-title font-weight-bold">Web Design</h5>
+                            <p class="card-text text-muted flex-grow-1">Design for the web with Adobe Photoshop.</p>
+                            <a href="#" class="btn btn-warning mt-auto">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -413,27 +702,29 @@
                     <div class="card course-card h-100 shadow-sm">
                         <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE CURSO 4.jpg" class="card-img-top" alt="Desarrollo Personal">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Liderazgo y Desarrollo Personal</h5>
-                            <p class="card-text text-muted flex-grow-1">Potencia tus habilidades de liderazgo y crecimiento personal para el éxito.</p>
-                            <a href="#" class="btn btn-warning mt-auto">Ver Curso</a>
+                            <h5 class="card-title font-weight-bold">Web Design</h5>
+                            <p class="card-text text-muted flex-grow-1">Design for the web with Adobe Photoshop.</p>
+                            <a href="#" class="btn btn-warning mt-auto">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-4">
-                <button class="btn btn-outline-primary btn-lg">Explorar Todos los Cursos</button>
+                <button class="btn btn-outline-warning btn-lg">View More</button>
             </div>
         </div>
     </section>
 
-    <section id="about-us" class="py-5 bg-primary text-white">
+    <section id="about-us" class="py-5 text-white" style="background-color: #0d3967ff;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-1 order-2 text-center-mobile">
-                    <h2 class="display-4 font-weight-bold mb-4">Sobre Nosotros</h2>
-                    <p class="lead">Universalad es una plataforma educativa online dedicada a ofrecer acceso global a conocimiento de alta calidad. Creemos firmemente en el poder de la educación para transformar vidas y carreras.</p>
-                    <p>Nuestra misión es empoderar a estudiantes de todo el mundo con cursos interactivos, impartidos por expertos de la industria, y una experiencia de aprendizaje flexible que se adapta a sus necesidades.</p>
-                    <button class="btn btn-warning btn-lg mt-4">Conoce Más</button>
+                    <h4 class="texto-naranja mb-1 texto-mayusculas fuente-negrita" style="font-size: 1.5rem; color: #ffffffff;">
+                        <span style="color: #F8B400; font-size: 1.5em; vertical-align: middle;">&bull;</span>About Us
+                    </h4>
+                    <h1 class="font-weight-bold mb-4" style="font-size: 2.2rem;">know everything we do for you</h1>
+                    <p class="lead">The university is a physical place, buildings, laboratories, libraries ... where students and teachers meet. The university is also a human-social system, that is, a set of elements that are related and interact with each other.</p>
+                    <button class="btn btn-warning btn-lg mt-4">Read More</button>
                 </div>
                 <div class="col-lg-6 order-lg-2 order-1 text-center mb-4 mb-lg-0">
                     <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE ABOUT US.jpg" class="img-fluid rounded shadow-lg" alt="Sobre Nosotros" style="height: 320px;">
@@ -442,172 +733,213 @@
         </div>
     </section>
 
-    <section id="benefits" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 font-weight-bold">Beneficios de Estudiar con Nosotros</h2>
-            <div class="row text-center">
-                <div class="col-6 col-md-3 mb-4">
-                    <div class="benefit-circle mx-auto">
-                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 1.png" alt="Acceso Global" class="mb-2" style="width: 80px; height: 80px;">
-                        <p class="mb-0">Excelente Contenido</p>
+    <section id="benefits" class="py-5" style="position: relative; background: url('TEST-SPANISH/TEST-SPANISH/imagenes/BACKGROUND BENEFITS.jpg') center center/cover no-repeat; overflow: hidden; font-size: 1.5rem; padding-top: 90px; padding-bottom: 90px;">
+        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="row justify-content-center text-center">
+                <div class="col-6 col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div class="benefit-circle d-flex flex-column align-items-center">
+                        <div style="background: #fff; border-radius: 50%; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 1.png" alt="Excelente Contenido" style="width: 72px; height: 72px;">
+                        </div>
+                        <span class="mb-0 text-white font-weight-bold" style="line-height:1.2; font-size: 1.4rem;">
+                            Excellent<br>Content
+                        </span>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <div class="benefit-circle mx-auto">
-                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 2.png" alt="Acceso Global" class="mb-2" style="width: 80px; height: 80px;">
-                        <p class="mb-0">Instructores Expertos</p>
+                <div class="col-6 col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div class="benefit-circle d-flex flex-column align-items-center">
+                        <div style="background: #fff; border-radius: 50%; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 2.png" alt="Instructores Expertos" style="width: 72px; height: 72px;">
+                        </div>
+                        <span class="mb-0 text-white font-weight-bold" style="line-height:1.2; font-size: 1.4rem;">
+                            Experts<br>Instructors
+                        </span>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <div class="benefit-circle mx-auto">
-                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 3.png" alt="Acceso Global" class="mb-2" style="width: 80px; height: 80px;">
-                        <p class="mb-0">Certificaciones Profesionales</p>
+                <div class="col-6 col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div class="benefit-circle d-flex flex-column align-items-center">
+                        <div style="background: #fff; border-radius: 50%; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 3.png" alt="Certificaciones Profesionales" style="width: 72px; height: 72px;">
+                        </div>
+                        <span class="mb-0 text-white font-weight-bold" style="line-height:1.2; font-size: 1.4rem;">
+                            The Best<br>Professionals
+                        </span>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <div class="benefit-circle mx-auto">
-                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 4.png" alt="Acceso Global" class="mb-2" style="width: 80px; height: 80px;">
-                        <p class="mb-0">Cursos Innovadores</p>
+                <div class="col-6 col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div class="benefit-circle d-flex flex-column align-items-center">
+                        <div style="background: #fff; border-radius: 50%; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/ICONO 4.png" alt="Cursos Innovadores" style="width: 72px; height: 72px;">
+                        </div>
+                        <span class="mb-0 text-white font-weight-bold" style="line-height:1.2; font-size: 1.4rem;">
+                            Countless<br>Courses
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="study-careers" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5 font-weight-bold">Explora las Diferentes Carreras que Ofrecemos</h2>
+    <section id="study-careers" class="py-5" style="background-color: #ffffffff; padding-top: 90px; padding-bottom: 90px;">
+      <div class="container text-center">
+        <div class="mb-5 text-start">
+          <h4 class="texto-naranja mb-1 texto-mayusculas fuente-negrita" style="font-size: 1.5rem; color: #000000ff; text-align: left;">
+            <span style="position: relative; top: 2px; color: #F8B400; font-size: 1.5em; vertical-align: end;">&bull;</span> Study Careers
+          </h4>
+          <h1 class="font-weight-bold mb-4" style="font-size: 2.2rem; text-align: left;">
+            Explore the different careers we offer
+          </h1>
+        </div>
+        <!-- PRIMERA FILA CON 4 CARDS -->
+        <div class="row pb-4">
+          <div class="col-6 col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY ADMINISTRATION.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1; position:absolute; bottom: 60px; left: 20px;"><b>Administration</b></h5>
+                <a href="#" class="btn btn-warning" style="position:absolute; bottom: 20px; left: 20px; z-index: 1;">Explore</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY ACCOUNTING.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1; position:absolute; bottom: 60px; left: 20px;"><b>Accounting</b></h5>
+                <a href="#" class="btn btn-warning" style="position:absolute; bottom: 20px; left: 20px; z-index: 1;">Explore</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBPARTE CON 2 CARDS -->
+          <div class="col-6 col-md-4 mb-4">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card career-card h-100 shadow-sm">
-                        <img src="img/career1.jpg" class="card-img-top" alt="Marketing">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Marketing Digital</h5>
-                            <p class="card-text text-muted flex-grow-1">Conviértete en un experto en la promoción de productos y servicios en el mundo digital.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm mt-auto">Ver Detalles</a>
-                        </div>
-                    </div>
+              <!-- Mathematics -->
+              <div class="col pb-4">
+                <div class="card h-100">
+                  <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY MATHEMATICS.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                    <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1;"><b>Mathematics</b></h5>
+                    <a href="#" class="btn btn-warning" style="justify-content: left; z-index: 1;">Explore</a>
+                  </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card career-card h-100 shadow-sm">
-                        <img src="img/career2.jpg" class="card-img-top" alt="Desarrollo Web">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Desarrollo Web Full Stack</h5>
-                            <p class="card-text text-muted flex-grow-1">Aprende a construir aplicaciones web completas, desde el frontend hasta el backend.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm mt-auto">Ver Detalles</a>
-                        </div>
-                    </div>
+              </div>
+              <!-- Programming -->
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY PROGRAMMING.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                    <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1;"><b>Programming</b></h5>
+                    <a href="#" class="btn btn-warning" style="justify-content: left; z-index: 1;">Explore</a>
+                  </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card career-card h-100 shadow-sm">
-                        <img src="img/career3.jpg" class="card-img-top" alt="Data Science">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title font-weight-bold">Ciencia de Datos e IA</h5>
-                            <p class="card-text text-muted flex-grow-1">Explora el análisis de grandes volúmenes de datos y el desarrollo de inteligencia artificial.</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm mt-auto">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-primary btn-lg">Ver Todas las Carreras</button>
-            </div>
+          </div>
         </div>
+        <!-- SEGUNDA FILA -->
+        <div class="row">
+          <div class="col-md-8 mb-4">
+            <div class="card h-100">
+              <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY ARCHITECTURE.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1;"><b>Architecture</b></h5>
+                <a href="#" class="btn btn-warning" style="justify-content: left; z-index: 1;">Explore</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body bg-url" style="background: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE  CATEGORY BIOLOGY.jpg') center center/cover no-repeat; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-radius: 15px;">
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,191,255,0.25); z-index:1; border-radius: 15px;"></div>
+                <h5 class="card-title d-flex justify-content-left text-white" style="z-index: 1;"><b>Biology</b></h5>
+                <a href="#" class="btn btn-warning" style="justify-content: left; z-index: 1;">Explore</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-outline-warning btn-lg mt-4">View More</button>
+      </div>
     </section>
-    <section id="team" class="py-5">
+
+    <!--Miembros del equipo-->
+    <section id="team" class="py-5" style="background-color: #f8f9fa;">
         <div class="container">
-            <h2 class="text-center mb-5 font-weight-bold">Conoce a Nuestro Equipo</h2>
-            <div id="teamCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row justify-content-center">
-                            <div class="col-md-3 col-sm-6 mb-4 team-member-card">
-                                <div class="card text-center h-100 shadow-sm">
-                                    <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 1.jpg" class="card-img-top rounded-circle mx-auto mt-3 profile-img" alt="John Smith">
-                                    <div class="card-body">
-                                        <h5 class="card-title font-weight-bold">John Smith</h5>
-                                        <p class="card-text text-muted">Math Teacher</p>
-                                        <div class="social-icons mt-3">
-                                            <a href="https://linkedin.com" target="_blank" class="text-primary mr-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                                            <a href="https://twitter.com" target="_blank" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-4 team-member-card d-none d-md-block">
-                                <div class="card text-center h-100 shadow-sm">
-                                    <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 2.jpg" class="card-img-top rounded-circle mx-auto mt-3 profile-img" alt="Dave Morgan">
-                                    <div class="card-body">
-                                        <h5 class="card-title font-weight-bold">Dave Morgan</h5>
-                                        <p class="card-text text-muted">Math Teacher</p>
-                                        <div class="social-icons mt-3">
-                                            <a href="https://linkedin.com" target="_blank" class="text-primary mr-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                                            <a href="https://twitter.com" target="_blank" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-4 team-member-card d-none d-md-block">
-                                <div class="card text-center h-100 shadow-sm">
-                                    <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 4.jpg" class="card-img-top rounded-circle mx-auto mt-3 profile-img" alt="Zara Smith">
-                                    <div class="card-body">
-                                        <h5 class="card-title font-weight-bold">Zara Smith</h5>
-                                        <p class="card-text text-muted">Biology Teacher</p>
-                                        <div class="social-icons mt-3">
-                                            <a href="https://linkedin.com" target="_blank" class="text-primary mr-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                                            <a href="https://twitter.com" target="_blank" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-4 team-member-card d-none d-md-block">
-                                <div class="card text-center h-100 shadow-sm">
-                                    <div class="img-background-container">
-                                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE BACKGROUND CARD TEAM (3).jpg" class="card-img-top" alt="Background">
-                                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 3.jpg" class="rounded-circle profile-img-specific" alt="Jimena Soto">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title font-weight-bold">Jimena Soto</h5>
-                                        <p class="card-text text-muted">Math Teacher</p>
-                                        <div class="social-icons mt-3">
-                                            <a href="https://linkedin.com" target="_blank" class="text-primary mr-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                                            <a href="https://twitter.com" target="_blank" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <h4 class="texto-naranja mb-1 texto-mayusculas fuente-negrita" style="font-size: 1.5rem; color: #000;">
+                <span style="color: #F8B400; font-size: 1.5em; vertical-align: middle;">&bull;</span> Meet Our Team
+            </h4>
+            <h1 class="font-weight-bold mb-4" style="font-size: 2.2rem;">Meet the best professionals</h1>
+            <div class="row justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-4 d-flex">
+                    <div class="tarjeta-equipo altura-100 w-100">
+                        <div>
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 1.jpg" alt="Profile 1" class="d-flex justify-content-center img-perfil-central">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-md-3 col-sm-6 mb-4 team-member-card">
-                                <div class="card text-center h-100 shadow-sm">
-                                    <img src="img/team5.jpg" class="card-img-top rounded-circle mx-auto mt-3 profile-img" alt="Michael Brown">
-                                    <div class="card-body">
-                                        <h5 class="card-title font-weight-bold">Michael Brown</h5>
-                                        <p class="card-text text-muted">Especialista en QA</p>
-                                        <div class="social-icons mt-3">
-                                            <a href="https://linkedin.com" target="_blank" class="text-primary mr-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                                            <a href="https://twitter.com" target="_blank" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="contenedor-fondo-perfil">
+                            <div class="fondo-img-tarjeta" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE BACKGROUND CARD TEAM  (3).jpg');"></div>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title fuente-negrita mt-5">Jhon Smith</h2>
+                            <p class="card-text texto-sutil">Math Teacher</p>
+                            <a href="#" class="btn-enlace-mas">Read More</a>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#teamCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#teamCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
-                </a>
+                <!-- Card 2 -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-4 d-flex">
+                    <div class="tarjeta-equipo height-100 w-100">
+                        <div>
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 2.jpg" alt="Profile 1" class="d-flex justify-content-center img-perfil-central">
+                        </div>
+                        <div class="contenedor-fondo-perfil">
+                            <div class="fondo-img-tarjeta" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE BACKGROUND CARD TEAM  (3).jpg');"></div>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title fuente-negrita mt-5">Dave Morgan</h2>
+                            <p class="card-text texto-sutil">Math Teacher</p>
+                            <a href="#" class="btn-enlace-mas">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-4 d-flex">
+                    <div class="tarjeta-equipo altura-100 w-100">
+                        <div>
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 4.jpg" alt="Profile 1" class="d-flex justify-content-center img-perfil-central">
+                        </div>
+                        <div class="contenedor-fondo-perfil">
+                            <div class="fondo-img-tarjeta" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE BACKGROUND CARD TEAM  (3).jpg');"></div>
+                       </div>
+                        <div class="card-body">
+                            <h5 class="card-title fuente-negrita mt-5">Zara Smith</h5>
+                            <p class="card-text texto-sutil">Biology Teacher</p>
+                            <a href="#" class="btn-enlace-mas">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-4 d-flex">
+                    <div class="tarjeta-equipo altura-100 w-100">
+                        <div>
+                            <img src="TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE TEAM 3.jpg" alt="Profile 1" class="d-flex justify-content-center img-perfil-central">
+                        </div>
+                        <div class="contenedor-fondo-perfil">
+                            <div class="fondo-img-tarjeta" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/IMAGE BACKGROUND CARD TEAM  (3).jpg');"></div>
+                       </div>
+                        <div class="card-body">
+                            <h2 class="card-title fuente-negrita mt-5">Jimena Soto</h2>
+                            <p class="card-text texto-sutil">Math Teacher</p>
+                            <a href="#" class="btn-enlace-mas">Read More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section id="reviews" class="py-5 bg-primary text-white">
+    
+    <section id="reviews" class="py-5 bg-white text-black">
         <div class="container">
             <h2 class="text-center mb-5 font-weight-bold">Lo que Nuestros Estudiantes Dicen</h2>
             <div id="reviewsCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -616,10 +948,10 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="embed-responsive embed-responsive-16by9 video-container">
-                                    <div class="video-thumbnail" data-video-id="VIDEO_ID_1" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/Image video.jpg');">
-                                        <i class="far fa-play-circle fa-5x"></i>
-                                    </div>
-                                    <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                    <video class="embed-responsive-item" controls>
+                                        <source src="TEST-SPANISH/TEST-SPANISH/videos/review-1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             </div>
                         </div>
@@ -628,10 +960,10 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="embed-responsive embed-responsive-16by9 video-container">
-                                    <div class="video-thumbnail" data-video-id="VIDEO_ID_2" style="background-image: url('TEST-SPANISH/TEST-SPANISH/imagenes/Image video.jpg');">
-                                        <i class="far fa-play-circle fa-5x"></i>
-                                    </div>
-                                    <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                    <video class="embed-responsive-item" controls>
+                                        <source src="TEST-SPANISH/TEST-SPANISH/videos/review-1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             </div>
                         </div>
@@ -649,58 +981,56 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white py-5">
+    <footer class="text-white py-5" style="background-color: #0d3967ff;">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 mb-4 text-center-mobile">
-                    <img src="img/footer-logo.png" alt="Universalad Footer Logo" class="img-fluid mb-3" style="max-height: 50px;">
-                    <p class="text-muted">Universalad es tu puerta al conocimiento global. Educación de calidad, a tu alcance.</p>
+                    <img src="TEST-SPANISH/TEST-SPANISH/Imagenes/LOGO.png" alt="Universalad Footer Logo" class="img-fluid mb-3" style="max-height: 150px;">
                 </div>
                 <div class="col-md-3 mb-4 text-center-mobile">
-                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <h5 class="mb-3">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#hero" class="text-white-50">Home</a></li>
-                        <li><a href="#the-most-popular" class="text-white-50">Lo Más Popular</a></li>
-                        <li><a href="#about-us" class="text-white-50">Sobre Nosotros</a></li>
-                        <li><a href="#benefits" class="text-white-50">Beneficios</a></li>
-                        <li><a href="#study-careers" class="text-white-50">Carreras</a></li>
-                        <li><a href="#team" class="text-white-50">Equipo</a></li>
-                        <li><a href="#reviews" class="text-white-50">Testimonios</a></li>
+                        <li><a href="#about-us" class="text-white scroll-link">About Us</a></li>
+                        <li><a href="#the-most-popular" class="text-white scroll-link">Courses</a></li>
+                        <li><a href="#team" class="text-white scroll-link">Team</a></li>
+                        <li><a href="#contact-us" class="text-white scroll-link">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4 text-center-mobile">
-                    <h5 class="mb-3">Contacto</h5>
+                    <h5 class="mb-3">Contact Info</h5>
                     <ul class="list-unstyled">
-                        <li><a href="tel:+1234567890" class="text-white-50"><i class="fas fa-phone mr-2"></i> +1 234 567 890</a></li>
-                        <li><a href="mailto:info@universalad.com" class="text-white-50"><i class="fas fa-envelope mr-2"></i> info@universalad.com</a></li>
-                        <li><a href="http://maps.google.com/?q=TuDireccionAqui" target="_blank" class="text-white-50"><i class="fas fa-map-marker-alt mr-2"></i> Tu Dirección Aquí</a></li>
+                        <li><a href="tel:+123456789" class="text-white"><i class="fas fa-phone mr-2"></i> +123 456 789</a></li>
+                        <li><a href="mailto:info@email.com" class="text-white"><i class="fas fa-envelope mr-2"></i> info@email.com</a></li>
+                        <li><a href="http://maps.google.com/?q=TuDireccionAqui" target="_blank" class="text-white"><i class="fas fa-map-marker-alt mr-2"></i> address, United States</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4 text-center-mobile">
-                    <h5 class="mb-3">Newsletter</h5>
-                    <p class="text-muted">Suscríbete a nuestro boletín para recibir actualizaciones y ofertas.</p>
+                    <h5 class="mb-3">NewsLetter</h5>
+                    <p class="text-white">Receive all our promotions<br>and notifications.</p>
                     <form>
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Tu Email">
+                            <input type="email" class="form-control" placeholder="Your Email">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">Suscribir</button>
+                                <button class="btn btn-warning" type="submit">Submit</button>
                             </div>
                         </div>
                     </form>
-                    <div class="social-links mt-3">
-                        <a href="https://facebook.com" target="_blank" class="text-white mr-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="text-white mr-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="https://instagram.com" target="_blank" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
-                    </div>
                 </div>
             </div>
-            <div class="text-center mt-4 pt-3" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                <p class="mb-0 text-muted">© 2025 Universalad. Todos los derechos reservados. Diseñado por <a href="https://striveenterprise.com" target="_blank" class="text-white-50">Jose Silvera</a></p>
+            <div class="text-align-start mt-4 pt-3" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                    <p class="mb-0 text-white">© Copyright University. All rights reserved.<br>This Website was designed and Developed by <a href="https://striveenterprise.com" target="_blank" class="text-white-50">Adrian Hernandez</a></p>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <a href="https://striveenterprise.com" target="_blank">
+                        <img src="TEST-SPANISH/TEST-SPANISH/imagenes/logo Silvera Enterprises.png" alt="Strive Enterprise Logo" class="img-fluid" style="max-height: 50px;" onclick="window.open('https://striveenterprise.com', '_blank')" style="cursor:pointer;"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ... ></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     
     <script>
@@ -713,39 +1043,10 @@
             }
         });
 
-        // Carrusel de videos
-        $('.video-thumbnail').on('click', function() {
-            var videoId = $(this).data('video-id');
-            var iframe = $(this).siblings('iframe');
-            // Aquí deberías construir la URL del video. Si son de YouTube, sería:
-            // var videoSrc = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-            // Para este ejemplo, dejo una URL genérica o la que tú tengas.
-            var videoSrc = 'video/your-video-name.mp4'; // Reemplaza con tu video real
-            iframe.attr('src', videoSrc);
-            $(this).hide();
+        // Cierra el menú responsive al hacer click en un enlace
+        $('.navbar-nav .nav-link').on('click', function(){
+            $('.navbar-collapse').collapse('hide');
         });
-
-        // Reinicia el video al cambiar de slide en el carrusel de reseñas
-        $('#reviewsCarousel').on('slide.bs.carousel', function () {
-            $('.video-container iframe').attr('src', '');
-            $('.video-thumbnail').show();
-        });
-
-        // Ajuste para el carrusel de equipo en vista móvil
-        $('#teamCarousel').carousel({
-            interval: false
-        });
-
-        // Lógica para mostrar 1 item en móvil y 4 en PC para el carrusel de equipo
-        function checkTeamCarouselItems() {
-            if ($(window).width() < 768) {
-                $('#teamCarousel .carousel-inner .carousel-item .team-member-card:not(:first)').addClass('d-none');
-            } else {
-                $('#teamCarousel .carousel-inner .carousel-item .team-member-card:not(:first)').removeClass('d-none');
-            }
-        }
-        $(window).on('resize', checkTeamCarouselItems);
-        $(document).ready(checkTeamCarouselItems);
 
         // Smooth scroll para los enlaces del menú y footer
         $('a[href^="#"]').on('click', function(event) {
@@ -757,9 +1058,6 @@
                 }, 800);
             }
         });
-
     </script>
 </body>
-</html>
- -->
 </html>
